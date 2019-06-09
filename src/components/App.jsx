@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Form from "./Form";
 import List from "./List";
 import Search from "./Search";
+import ListSearch from "./ListSearch";
 //import Timer from "./Timer";
 
 export default class App extends Component {
@@ -35,6 +36,7 @@ export default class App extends Component {
 
   serchList(e) { 
     e.preventDefault();
+    this.resetList();
     for (let i = 0; i < this.state.todo.length; i++) { 
       if (e.target.searchTitle.value === this.state.todo[i].title) {
         this.state.searchList.push({ title: this.state.todo[i].title , importance: this.state.todo[i].importance});
@@ -60,7 +62,7 @@ export default class App extends Component {
         <h1 className="siimple-box-title siimple--color-white">React Todo App</h1>
         <p classNmae="siimple-box-title siimple--color-white">Number of did task:{this.state.count}</p>
         <Search searchList={this.serchList} resetList={this.resetList} />
-        <List todos={this.state.searchList} handleRemove={this.handleRemove} />
+        <ListSearch todos={this.state.searchList} />
         <Form handleAdd={this.handleAdd}/>
         <div className="siimple-rule"></div>
         <List todos={this.state.todo} handleRemove={this.handleRemove} />
