@@ -1,34 +1,55 @@
-import React, {Component}from 'react';
-
-
+import React, { Component } from 'react';
+let testTimer;
 class Timer extends Component { 
-    constructor(props) { 
+    
+    constructor(props) {
         super(props);
         this.state = {
-            count: 0.0
+            min: props.min,
+            sec: props.sec,
+            isClick: false
         };
-        this.countUp = this.countUp.bind(this);
+        this.setTimer = this.setTimer.bind();
+        this.isClicked = this.isClicked.bind();
     }
-    printTime() { 
-        
-        this.state.count += 0.001;
+
+    
+    
+
+    setTimer() {
+        if (this.state.sec < 0 && this.state.min > 0) {
+            this.state.sec = 59;
+            this.state.min--;
+        } else if (this.state.min === this.state.sec === 0) {
+            this.state.sec = 0;
+            this.state.min = 0;
+            clearInterval(testTimer);
+        } else {
+            this.state.sec--;
+        }
         this.setState({
-            count: this.state.count
+            min: this.state.min,
+            sec: this.state.sec
         });
-    }
-    countUp() { 
-        // eslint-disable-next-line no-undef
-        setInterval(printTime,1);
+        
     }
 
-    render() { 
-        return (<div>
-            <h1>Timer</h1>
-            <button onClick={this.countUp}>Start</button>
-            <p>{this.state.count}</p>
-        </div>);
+    isClicked() { 
+        if (this.state.isClick === true) { testTimer = setInterval(this.setTimer(), 1000); }
     }
-}
+    
 
-
+    render() {
+        return (
+            <div>
+                <p className="siimple-box-title siimple--color-white">{this.state.min}:{this.state.sec}</p>
+                <button type="submit" onClick={() => {
+                    this.setState({ isClick: true });
+                    this.isClicked();
+                }}>start</button >
+        </div>
+                );
+            }
+        }
+        
 export default Timer;
