@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Form from "./Form";
 import List from "./List";
+import Search from "./Search";
 //import Timer from "./Timer";
 
 export default class App extends Component {
@@ -9,9 +10,12 @@ export default class App extends Component {
     this.state = {
       todo: [],
       count: 0,
+      searchList:[]
     };
     this.handleAdd = this.handleAdd.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
+    this.serchList = this.serchList.bind(this);
+    this.resetList = this.resetList.bind(this);
     //this.printTime = this.printTime.bind(this);
     //this.countUp = this.countUp.bind(this);
   }
@@ -29,10 +33,25 @@ export default class App extends Component {
     e.target.title.value = '';
   }
 
+  serchList(e) { 
+    e.preventDefault();
+    for (let i = 0; i < this.state.todo.length; i++) { 
+      if (e.target.searchTitle.value === this.state.todo[i].title) {
+        this.state.searchList.push({ title: this.state.todo[i].title , importance: this.state.todo[i].importance});
+        }
+    }
+    this.setState({ searchList: this.state.searchList });
+    
+    e.target.searchTitle.value = '';
+  }
   handleRemove(i) { 
     this.state.todo.splice(i, 1);
     this.state.count++;
     this.setState({ todo: this.state.todo ,count: this.state.count});
+  }
+  resetList() { 
+    this.state.searchList = [];
+    this.setState({searchList: this.state.searchList});
   }
 
   render() {
@@ -40,9 +59,12 @@ export default class App extends Component {
       <div className="siimple-box siimple--bg-dark">
         <h1 className="siimple-box-title siimple--color-white">React Todo App</h1>
         <p classNmae="siimple-box-title siimple--color-white">Number of did task:{this.state.count}</p>
+        <Search searchList={this.serchList} resetList={this.resetList} />
+        <List todos={this.state.searchList} handleRemove={this.handleRemove} />
         <Form handleAdd={this.handleAdd}/>
         <div className="siimple-rule"></div>
         <List todos={this.state.todo} handleRemove={this.handleRemove} />
+       
         {/*<Timer min={0} sec={30} />*/}
       </div>
     );
