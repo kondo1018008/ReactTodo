@@ -65,9 +65,10 @@ export default class App extends Component {
         <Search searchList={this.serchList} resetList={this.resetList} />
         <ListSearch todos={this.state.searchList} />
         </div>
+        <div className="list">
         <Form handleAdd={this.handleAdd}/>
         <List todos={this.state.todo} handleRemove={this.handleRemove} />
-       
+        </div>
         {/*<Timer min={0} sec={30} />*/}
       </div>
     );
