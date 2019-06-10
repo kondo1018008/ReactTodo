@@ -58,13 +58,14 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className="siimple-box siimple--bg-dark">
-        <h1 className="siimple-box-title siimple--color-white">React Todo App</h1>
-        <p classNmae="siimple-box-title siimple--color-white">Number of did task:{this.state.count}</p>
+      <div className="whole">
+        <h1 className="title">React Todo App</h1>
+        <p className="siimple-box-title siimple--color-white">Number of did task:{this.state.count}</p>
+        <div className="search">
         <Search searchList={this.serchList} resetList={this.resetList} />
         <ListSearch todos={this.state.searchList} />
+        </div>
         <Form handleAdd={this.handleAdd}/>
-        <div className="siimple-rule"></div>
         <List todos={this.state.todo} handleRemove={this.handleRemove} />
        
         {/*<Timer min={0} sec={30} />*/}

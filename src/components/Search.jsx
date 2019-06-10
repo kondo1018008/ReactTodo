@@ -1,6 +1,5 @@
 import React from "react";
 
-
 const Search = (props) => (
     <div>
                 <form onSubmit={props.searchList}>
