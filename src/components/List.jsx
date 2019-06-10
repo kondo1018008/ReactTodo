@@ -7,10 +7,10 @@ let btn = { cursor: 'pointer' };
 const List = (props) => (
   <ul className="siimple-list">
     {props.todos.map((todo, i) => {
-      return <div><li key={i} className="siimple-list-item siimple--bg-white" style={style}>
+      return <div><li key={i} className="listA" style={style}>
         {todo.title}&nbsp;&nbsp;
-        <span class="siimple-grid"><em>Importance:&nbsp;&nbsp;</em>{todo.importance} </span >
-        <button className="siimple-tag siimple-tag--error siimple-hover" style={btn} onClick={() => props.handleRemove(i)}>Delete</button>
+        <span className="imp"><u><em>Importance:&nbsp;&nbsp;</em>{todo.importance}</u> </span >
+        <button className="siimple-tag siimple-tag--error siimple-hover" style={btn} onClick={() => props.handleRemove(i)}>Did</button>
                   </li>
       
       </div>

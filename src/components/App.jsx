@@ -3,6 +3,7 @@ import Form from "./Form";
 import List from "./List";
 import Search from "./Search";
 import ListSearch from "./ListSearch";
+//import SearchImportance from "./SearchImportance";
 //import Timer from "./Timer";
 
 export default class App extends Component {
@@ -17,6 +18,7 @@ export default class App extends Component {
     this.handleRemove = this.handleRemove.bind(this);
     this.serchList = this.serchList.bind(this);
     this.resetList = this.resetList.bind(this);
+    //this.searchByImportance = this.searchByImportance.bind(this);
     //this.printTime = this.printTime.bind(this);
     //this.countUp = this.countUp.bind(this);
   }
@@ -33,6 +35,19 @@ export default class App extends Component {
     
     e.target.title.value = '';
   }
+
+  /*searchByImportance(e) { 
+    e.preventDefault();
+    this.resetList();
+    for (let i = 0; i < this.state.todo.length; i++) { 
+      if (e.target.searchImportance.value === this.state.todo[i].importance) {
+        this.state.searchList.push({ title: this.state.todo[i].title , importance: this.state.todo[i].importance});
+        }
+    }
+    this.setState({ searchList: this.state.searchList });
+    
+    e.target.searchTitle.value = '';
+  }*/
 
   serchList(e) { 
     e.preventDefault();
@@ -62,6 +77,7 @@ export default class App extends Component {
         <h1 className="title">React Todo App</h1>
         <p className="siimple-box-title siimple--color-white">Number of did task:{this.state.count}</p>
         <div className="search">
+          {/*<SearchImportance SearchByImportance={this.SearchByImportance}/>*/}
         <Search searchList={this.serchList} resetList={this.resetList} />
         <ListSearch todos={this.state.searchList} />
         </div>
